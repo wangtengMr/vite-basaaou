@@ -1,5 +1,20 @@
 <template>
   <div>
+    <div>
+      <FromItup v-bind="liveruserformConfig" v-model="liveUserlist">
+        <template #button>
+          <el-button size="small">
+            <el-icon> <Search /> </el-icon>查询</el-button
+          >
+          <el-button size="small" style="color: red">
+            <el-icon> <Delete /> </el-icon>重置</el-button
+          >
+          <el-button size="small" type="primary">
+            <el-icon> <Plus /> </el-icon>新增</el-button
+          >
+        </template>
+      </FromItup>
+    </div>
     <BaseTable :getListName="liveuserlist" :tableConfig="livelist">
       <template #sex="scope">
         <el-tag v-if="scope.row.sex == 0" type="success">女</el-tag>
@@ -21,8 +36,10 @@
 
 <script setup lang="ts">
 import BaseTable from '@/baseul/table/src/table..vue'
+import FromItup from '@/baseul/from/index'
 import { liveUser } from '@/ulite/api'
 import { livelist } from './config/liveUser.config'
+import {liveruserformConfig} from './config/livs.config'
 import { ref } from 'vue'
 const liveuserlist = ref<any>([])
 const getNamedata = () => {
@@ -33,6 +50,10 @@ const getNamedata = () => {
   })
 }
 getNamedata()
+const liveUserlist = ref<any>({
+  loginName: '',
+  phone: ''
+})
 </script>
 
 <style></style>

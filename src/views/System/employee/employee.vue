@@ -1,4 +1,19 @@
 <template>
+  <div>
+    <FromItup v-bind="formConfig" v-model="formInline">
+      <template #button>
+        <el-button size="small">
+          <el-icon> <Search /> </el-icon>查询</el-button
+        >
+        <el-button size="small" style="color: red">
+          <el-icon> <Delete /> </el-icon>重置</el-button
+        >
+        <el-button size="small" type="primary">
+          <el-icon> <Plus /> </el-icon>新增</el-button
+        >
+      </template>
+    </FromItup>
+  </div>
   <div class="table-top">
     <BaseTable :getListName="getListName" :tableConfig="tableconfig">
       <template #sex="scope">
@@ -12,7 +27,7 @@
       <template #status="scope">
         <el-switch v-model="scope.row.status" active-text="否" inactive-text="是"> </el-switch>
       </template>
-      
+
       <template #action>
         <div>
           <el-button size="small" icon="EditPen" type="primary">编辑</el-button>
@@ -26,9 +41,11 @@
 
 <script setup lang="ts">
 import BaseTable from '@/baseul/table/src/table..vue'
+import FromItup from '@/baseul/from/index'
 import { getlistName } from '@/ulite/api'
-import { ref } from 'vue'
-import {tableconfig} from './config/table-config'
+import { reactive, ref } from 'vue'
+import { tableconfig } from './config/table-config'
+import { formConfig } from './config/from-config'
 const getListName = ref<any>([])
 const getNamedata = () => {
   getlistName().then((res) => {
@@ -39,6 +56,11 @@ const getNamedata = () => {
 }
 getNamedata()
 
+const formInline = ref<any>({
+  loginName: '',
+  phone: '',
+  type: ''
+})
 
 const handleDelete = () => {}
 const handleEdit = () => {}

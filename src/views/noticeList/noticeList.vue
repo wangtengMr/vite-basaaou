@@ -1,5 +1,20 @@
 <template>
     <div>
+      <div>
+      <FromItup v-bind="notisformConfig" v-model="notifrom">
+        <template #button>
+          <el-button size="small">
+            <el-icon> <Search /> </el-icon>查询</el-button
+          >
+          <el-button size="small" style="color: red">
+            <el-icon> <Delete /> </el-icon>重置</el-button
+          >
+          <el-button size="small" type="primary">
+            <el-icon> <Plus /> </el-icon>新增</el-button
+          >
+        </template>
+      </FromItup>
+    </div>
       <BaseTable :getListName="Noticelist" :tableConfig="noticelist">
         <template #action>
           <div>
@@ -13,9 +28,11 @@
   
   <script setup lang="ts">
   import BaseTable from '@/baseul/table/src/table..vue'
+  import FromItup from '@/baseul/from/index'
   import { sysNotice } from '@/ulite/api'
   //这对应这 你抽离的表格数据 :tableConfig = ""
   import { noticelist } from './config/noti.config'
+  import {notisformConfig} from './config/notiFrom.config'
   import { ref } from 'vue'
   const   Noticelist = ref<any>([])
   const getNamedata = () => {
@@ -26,6 +43,9 @@
     })
   }
   getNamedata()
+  const notifrom = ref<any>({
+    title:''
+  })
   </script>
   
   <style></style>

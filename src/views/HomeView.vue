@@ -6,12 +6,17 @@
         <navSubmenu></navSubmenu>
       </el-aside>
       <el-container>
-        <el-header>Header </el-header>
+        <el-header>
+          <div>
+            <el-icon :size="20">
+              <Edit />
+            </el-icon>
+          </div>
+          <div class="tags-view-container"></div>
+        </el-header>
         <el-main>
-          <div class="hader-top"></div>
           <RouterView />
-          </el-main
-        >
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -33,27 +38,32 @@ import navSubmenu from '@/components/nav-submenu/nav-submenu.vue'
 .el-header {
   background-color: #ffffff;
   color: #333;
-  text-align: center;
+  height: 84px;
   line-height: 60px;
+  padding: 0;
+}
+.tags-view-container {
+  height: 34px;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #d8dce5;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  background-color: #ccc;
 }
 
 .el-aside {
   background-color: #304156;
   color: #cccc;
+  width: 210px;
   height: 100vh;
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: #ffff;
+  height: 100vh;
   color: #333;
   width: 100%;
-  padding: 0px;
-}
-.hader-top {
-  width: 100%;
-  height: 30px;
-  box-shadow: 1px 1px 1px #ccc;
-  background-color: #ffffff;
-  margin-top: 2px;
+  padding: 20px;
 }
 </style>
